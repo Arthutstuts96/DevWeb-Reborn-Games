@@ -10,18 +10,17 @@ class Login(View):
             return render(request, 'login.html')
         
     def post(self, request):
-        True
-        # user = request.POST.get('nome', None)
-        # password = request.POST.get('senha', None)
+        user = request.POST.get('username', None)
+        password = request.POST.get('password', None)
 
-        # print(usuario, senha)
+        print(user, password)
 
-        # user = authenticate(request, username=usuario, password=senha)
-        # if user is not None:
-        #     if user.is_active:
-        #         login(request, user)
-        #         return redirect('/veiculo')
-        #     else:
-        #         return render(request, 'autenticacao.html', {'mensagem': 'Usuário está inativo'})
-        # else:
-        #     return render(request, 'autenticacao.html', {'mensagem': 'Usuário ou senha inválidos'})
+        user = authenticate(request, username=user, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('/game')
+            else:
+                return render(request, 'login.html', {'mensagem': 'Usuário está inativo'})
+        else:
+            return render(request, 'login.html', {'mensagem': 'Usuário ou senha inválidos'})
