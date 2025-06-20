@@ -57,14 +57,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'reborngames',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'postgres',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '5432',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'reborngames',
+        'USER': 'postgres',
+        'PASSWORD': '1', # Depois mudar para postgres
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 
 
@@ -112,16 +112,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-'''
-Entrando no PSQL
-su -l
-su postgres
-COMANDOS PSQL: 
-No terminal do postgres: psql -c "<comando_sql>" -- Executa esse comando sql
-\l -- Lista todos os bancos de dados
-\c <nome_banco> -- Muda para o banco especificado com o user atual
-\dt -- Lista todas as tabelas do banco atual
-\q -- Fecha o terminal do psql
-\d <nome_tabela> -- Descreve os campos da tabela selecionada
-'''

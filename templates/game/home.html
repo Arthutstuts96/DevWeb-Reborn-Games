@@ -1,11 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebase Games | O melhor de revenda</title>
 </head>
+
 <body>
     Games uau
+    <a href="{% url 'create-game' %}">Ir para criar game</a>
+    {% for game in games %}
+    <div>
+        {% if game.image %}
+        <img src="{{ game.image.url }}">
+        {% else %}
+        <img src="{% static 'images/no-image.png' %}" width="120">
+        {% endif %}
+        <div>
+            <h5><strong>{{game.name}}</strong></h5>
+        </div>
+    </div>
+    {% endfor %}
+    {% include 'partials/_footer.html' %}
 </body>
+
 </html>

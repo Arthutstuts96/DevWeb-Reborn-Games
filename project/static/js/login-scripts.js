@@ -2,7 +2,7 @@ const block = document.querySelector('.fixed__block');
 const btn = document.getElementById('move__block');
 const target = document.querySelector('.form__container');
 
-// Função para alinhar o bloco com o formulário
+// Funcao para alinhar o bloco com o formulário
 function alignBlock() {
     const rect = target.getBoundingClientRect();
 
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', alignBlock);
 // Alinhar quando redimensionar a tela
 window.addEventListener('resize', alignBlock);
 
-// Animação ao clicar (garante alinhamento antes de mover)
+// Animacao ao clicar (garante alinhamento antes de mover)
 btn.addEventListener('click', () => {
     alignBlock(); 
     block.classList.toggle('move');

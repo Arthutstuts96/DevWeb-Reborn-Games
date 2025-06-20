@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Novo Game</title>
+</head>
+
+<body>
+    <h1>Adicionar um Novo Game</h1>
+
+    <form action="/game/criar/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }} <button type="submit">Salvar Game</button>
+    </form>
+
+    <hr>
+    <a href="{% url 'home' %}">Voltar para a Home</a>
+</body>
+
+</html>

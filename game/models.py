@@ -8,3 +8,4 @@ class Game(models.Model):
     category = models.SmallIntegerField(choices=GAME_CATEGORIES)
     isUsed = models.BooleanField()
     image = models.ImageField(null=True, upload_to='game/images')
+    owner = models.CharField(max_length=100)
