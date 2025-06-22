@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ game.name }} | Reborn Games</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/game-view-styles.css' %}">
+</head>
+
+<body>
+    {% include 'partials/_header.html' %}
+    <main class="product__container">
+        <div class="product__image-box">
+            {% if game.image %}
+            <img src="{{ game.image.url }}" alt="{{ game.name }}" class="product__image">
+            {% else %}
+            <img src="{% static 'images/no-image.png' %}" alt="Sem imagem" class="product__image">
+            {% endif %}
+        </div>
+
+        <div class="product__info">
+            <h1 class="product__title">{{ game.name }}</h1>
+            <p class="product__price">R$ {{ game.price }}</p>
+
+            {% if game.isUsed %}
+            <span class="product__badge product__badge--used">Usado</span>
+            {% else %}
+            <span class="product__badge product__badge--new">Novo</span>
+            {% endif %}
+
+            <p class="product__category">
+                Categoria:
+                {{ game.get_category_display }}
+            </p>
+
+            <p class="product__owner">Vendido por <strong>{{ game.owner }}</strong></p>
+
+            <p class="product__description">{{ game.description }}</p>
+
+            <div class="product__actions">
+                <a href="{% url 'home' %}" class="product__btn product__btn--back">← Voltar</a>
+                <a href="{% url 'edit-game' game.id %}" class="product__btn">Editar</a>
+                <a href="{% url 'delete-game' game.id %}" class="product__btn product__btn--danger">Deletar</a>
+            </div>
+        </div>
+    </main>
+
+    {% include 'partials/_footer.html' %}
+</body>
+
+</html>

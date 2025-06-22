@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home-styles.css' %}">
+<nav class="navbar__container">
+    <div class="navbar__logo">Rebase Games</div>
+    <div class="navbar__profile">
+        <div class="navbar__links">
+            <a href="{% url 'create-game' %}" class="navbar__link">Criar Game</a>
+        </div>
+        <img src="{% static 'images/user-icon.png' %}" alt="Perfil" class="navbar__profile-icon"
+            onclick="toggleMenu()" />
+        <div class="navbar__dropdown" id="profileMenu">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="navbar__logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -5,17 +5,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar Novo Game</title>
+    <link rel="stylesheet" href="{% static 'css/game-form-styles.css' %}">
 </head>
 
 <body>
-    <h1>Adicionar um Novo Game</h1>
+    <div class="form__container">
+        <h1 class="form__title">Adicionar um Novo Game</h1>
 
-    <form action="/game/criar/" method="POST" enctype="multipart/form-data">
-        {% csrf_token %} {{ form.as_p }} <button type="submit">Salvar Game</button>
-    </form>
+        <form action="/game/criar/" method="POST" enctype="multipart/form-data" class="form__body">
+            {% csrf_token %}
 
-    <hr>
-    <a href="{% url 'home' %}">Voltar para a Home</a>
+            <div class="form__group">
+                <label for="id_name">Nome do Jogo</label>
+                <input type="text" name="name" id="id_name" required>
+            </div>
+
+            <div class="form__group">
+                <label for="id_year">Ano de Lançamento</label>
+                <input type="number" name="year" id="id_year" required>
+            </div>
+
+            <div class="form__group">
+                <label for="id_category">Categoria</label>
+                <select name="category" id="id_category" required>
+                    {% for key, value in form.category.field.choices %}
+                    <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form__group form__checkbox">
+                <label>
+                    <input type="checkbox" name="isUsed" id="id_isUsed"> Usado
+                </label>
+            </div>
+
+            <div class="form__group">
+                <label for="id_image">Imagem do Jogo</label>
+                <input type="file" name="image" id="id_image" accept="image/*">
+            </div>
+
+            <div class="form__group">
+                <label for="id_owner">Dono</label>
+                <input type="text" name="owner" id="id_owner" required>
+            </div>
+
+            <div class="form__group">
+                <label for="id_price">Preço (R$)</label>
+                <input type="number" step="0.01" name="price" id="id_price" required>
+            </div>
+
+            <div class="form__group">
+                <label for="id_description">Descrição</label>
+                <textarea name="description" id="id_description" rows="4" maxlength="1000" required></textarea>
+            </div>
+
+            <div class="form__actions">
+                <button type="submit" class="form__submit">Salvar Game</button>
+                <a href="{% url 'home' %}" class="form__back">Voltar para a Home</a>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

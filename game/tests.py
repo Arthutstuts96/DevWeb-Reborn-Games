@@ -146,3 +146,46 @@ class TestDeleteGameView(TestCase):
         self.assertRedirects(response, reverse('home'))
 
         self.assertEqual(Game.objects.count(), 0)
+
+
+class TestGameDetailView(TestCase):
+    def setUp(self):
+        """Prepara o ambiente para o teste da DetailView."""
+        self.user = User.objects.create_user(username='userteste', password='123')
+        self.client.force_login(self.user)
+        self.game = Game.objects.create(
+            name='Chrono Trigger',
+            year=1995,
+            create_date=timezone.now(),
+            category=GAME_CATEGORIES[2][0], 
+            isUsed=True,
+            owner='Test User',
+            price=350.00,
+            description='A time-traveling RPG.'
+        )
+        self.url = reverse('game-detail', kwargs={'pk': self.game.pk})
+
+    def test_get_request(self):
+        """
+        Testa se a página de detalhes carrega corretamente (GET) para um
+        game existente.
+        """
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTemplateUsed(response, 'game/game-view.html')
+
+        self.assertIn('game', response.context)
+        self.assertEqual(response.context['game'], self.game)
+        self.assertEqual(response.context['game'].name, 'Chrono Trigger')
+        
+    def test_404_for_invalid_game(self):
+        """
+        Testa se a view retorna um erro 404 ao tentar acessar um game
+        que não existe.
+        """
+        invalid_url = reverse('game-detail', kwargs={'pk': self.game.pk + 1})
+        response = self.client.get(invalid_url)
+
+        self.assertEqual(response.status_code, 404)

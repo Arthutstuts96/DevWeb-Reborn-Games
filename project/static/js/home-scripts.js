@@ -11,4 +11,4 @@ setInterval(() => {
         left: carousel.clientWidth * index,
         behavior: 'smooth'
     });
-}, 3500); // muda a cada 4 segundos
+}, 3500);
