@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
 
+from project import settings
+
 class Login(View): 
     def get(self, request):
         if request.user.is_authenticated:
@@ -24,3 +26,8 @@ class Login(View):
                 return render(request, 'login.html', {'mensagem': 'Usuário está inativo'})
         else:
             return render(request, 'login.html', {'mensagem': 'Usuário ou senha inválidos'})
+        
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect(settings.LOGIN_URL)

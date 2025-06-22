@@ -7,5 +7,7 @@ class Game(models.Model):
     create_date = models.DateTimeField()
     category = models.SmallIntegerField(choices=GAME_CATEGORIES)
     isUsed = models.BooleanField()
-    image = models.ImageField(null=True, upload_to='game/images')
+    image = models.ImageField(blank=True, upload_to='game/images')
     owner = models.CharField(max_length=100)
+    price = models.FloatField()
+    description = models.TextField(max_length=1000)

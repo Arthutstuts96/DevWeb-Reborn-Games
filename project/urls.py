@@ -4,6 +4,7 @@ from project.views import *
 
 urlpatterns = [
     path('', Login.as_view(), name="login"),
+    path('logout/', Logout.as_view(), name="logout"),
     path('admin/', admin.site.urls),
     path('game/', include('game.urls'), name="game")
 ]

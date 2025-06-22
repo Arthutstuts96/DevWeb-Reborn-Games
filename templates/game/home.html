@@ -6,24 +6,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebase Games | O melhor de revenda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home-styles.css' %}">
 </head>
 
 <body>
-    Games uau
-    <a href="{% url 'create-game' %}">Ir para criar game</a>
-    {% for game in games %}
-    <div>
-        {% if game.image %}
-        <img src="{{ game.image.url }}">
-        {% else %}
-        <img src="{% static 'images/no-image.png' %}" width="120">
-        {% endif %}
-        <div>
-            <h5><strong>{{game.name}}</strong></h5>
+    <!-- Navbar -->
+    <nav class="navbar__container">
+        <div class="navbar__logo">Rebase Games</div>
+        <div class="navbar__links">
+            <a href="{% url 'create-game' %}" class="navbar__link">Criar Game</a>
         </div>
-    </div>
-    {% endfor %}
+        <div class="navbar__profile">
+            <img src="{% static 'images/user-icon.png' %}" alt="Perfil" class="navbar__profile-icon"
+                onclick="toggleMenu()" />
+            <div class="navbar__dropdown" id="profileMenu">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="navbar__logout-button">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrossel automático -->
+    <section class="carousel__container" id="carousel">
+        <div class="carousel__slide"><img src="{% static 'images/banner1.jpg' %}" alt="Banner 1"></div>
+        <div class="carousel__slide"><img src="{% static 'images/banner2.jpg' %}" alt="Banner 2"></div>
+        <div class="carousel__slide"><img src="{% static 'images/banner3.jpg' %}" alt="Banner 3"></div>
+    </section>
+
+    <!-- Grid de Jogos -->
+    <main class="games__grid">
+        {% for game in games %}
+        <div class="game__card">
+            {% if game.image %}
+            <img src="{{ game.image.url }}" class="game__image" alt="Foto do jogo {{ game.name }}">
+            {% else %}
+            <img src="{% static 'images/no-image.png' %}" class="game__image" alt="Sem imagem">
+            {% endif %}
+            <div class="game__info">
+                <div>
+                    <div class="game__row">
+                        <h3 class="game__name">{{ game.name }}</h3>
+                        <span class="game__price">R${{ game.price }}</span>
+                    </div>
+                    <p class="game__seller">Por {{ game.owner }}</p>
+                    <p class="game__description">{{ game.description }}</p>
+                </div>
+                <div class="game__actions">
+                    <a href="editar/{{ game.id }}">Editar</a>
+                    <a href="deletar/{{ game.id }}">Deletar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
     {% include 'partials/_footer.html' %}
+
+    <script src="{% static 'js/home-scripts.js' %}"></script>
 </body>
 
 </html>

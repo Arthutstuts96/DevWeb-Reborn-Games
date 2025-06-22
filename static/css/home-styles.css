@@ -1,0 +1,146 @@
+/* Navbar */
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #111;
+    color: #fff;
+}
+
+.navbar__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar__links a {
+    color: #fff;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar__profile {
+    position: relative;
+}
+
+.navbar__profile-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navbar__dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.navbar__dropdown--active {
+    display: block;
+}
+
+.navbar__logout-button {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Carrossel */
+.carousel__container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    margin: 1rem 0;
+}
+
+.carousel__slide {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+}
+
+.carousel__slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Games Section */
+.games__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+}
+
+.game__card {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.game__image {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+}
+
+.game__info {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.game__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game__name {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.game__price {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.game__seller {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0.25rem 0;
+}
+
+.game__description {
+    margin: 0.5rem 0;
+}
+
+.game__actions {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.game__actions a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.game__actions a:hover {
+    text-decoration: underline;
+}

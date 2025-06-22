@@ -16,3 +16,14 @@ class CreateGame(CreateView):
     form_class = FormGame
     template_name = 'game/create_game.html'
     success_url = reverse_lazy('home')
+
+class EditGame(UpdateView):
+    model = Game
+    form_class = FormGame
+    template_name = 'game/edit_game.html'
+    success_url = reverse_lazy('home')
+
+class DeleteGame(DeleteView):
+    model = Game
+    template_name = 'game/delete_game.html'
+    success_url = reverse_lazy('home')    
