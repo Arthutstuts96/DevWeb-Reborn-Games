@@ -9,9 +9,9 @@
         <img src="{% static 'images/user-icon.png' %}" alt="Perfil" class="navbar__profile-icon"
             onclick="toggleMenu()" />
         <div class="navbar__dropdown" id="profileMenu">
-            <form method="POST" action="{% url 'logout' %}">
+            <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="navbar__logout-button">Logout</button>
+                <button type="submit">Sair</button>
             </form>
         </div>
     </div>

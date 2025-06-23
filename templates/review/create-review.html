@@ -17,11 +17,6 @@
             {% csrf_token %}
 
             <div class="form__group">
-                <label for="id_reviewer">Seu Nome</label>
-                <input type="text" name="reviewer" id="id_reviewer" required>
-            </div>
-
-            <div class="form__group">
                 <label for="id_stars">Nota (1 a 5)</label>
                 <select name="stars" id="id_stars" required>
                     {% for i in "12345" %}

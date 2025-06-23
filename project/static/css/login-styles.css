@@ -1,43 +1,96 @@
-body {
-    background-color: #123456;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.main__container {
+/* Página de autenticação */
+.auth-page {
+    background-image: url('../images/login-videogame-background.jpg');
+    background-position: center;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
 }
 
-.form__container {
-    background-color: white;
-    padding: 24px;
+.auth-box {
+    position: relative;
+    background-color: #fff;
+    padding: 3rem;
     border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
 }
 
-.auth__form {
+.reborngames__title{
+    font-family: "Sixtyfour Convergence", sans-serif;
+    position: absolute;
+    text-align: center;
+    color: #010c18;
+    top: -100px;
+    font-size: 60px;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+}
+
+.auth-form {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 8px;
+    gap: 1.2rem;
 }
 
-#move__block {
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-errors,
+.field-errors {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+}
+
+.btn-primary {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #0069d9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.fixed__block {
-    background-color: aqua;
-    position: fixed;
-    width: 200px;
-    height: 200px;
-    transition: transform 0.75s ease-in-out;
-    border-radius: 12px;
+.btn-primary:hover {
+    background-color: #0053b3;
 }
 
-.move {
-    transform: translateX(200px);
+.auth-alt {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.auth-alt a {
+    color: #0069d9;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-alt a:hover {
+    text-decoration: underline;
 }

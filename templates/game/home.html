@@ -41,8 +41,10 @@
                         <p class="game__description">{{ game.description }}</p>
                     </div>
                     <div class="game__actions">
+                        {% if request.user.is_authenticated and game.owner == request.user %}
                         <a href="editar/{{ game.id }}">Editar</a>
                         <a href="deletar/{{ game.id }}">Deletar</a>
+                        {% endif %}
                     </div>
                 </div>
             </a>

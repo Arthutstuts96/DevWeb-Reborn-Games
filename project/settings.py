@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'game.apps.GameConfig',
     'review.apps.ReviewConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -114,4 +115,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home' 
+LOGOUT_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'user.User'

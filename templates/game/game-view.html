@@ -42,8 +42,11 @@
 
             <div class="product__actions">
                 <a href="{% url 'home' %}" class="product__btn product__btn--back">← Voltar</a>
+
+                {% if request.user.is_authenticated and game.owner == request.user %}
                 <a href="{% url 'edit-game' game.id %}" class="product__btn">Editar</a>
                 <a href="{% url 'delete-game' game.id %}" class="product__btn product__btn--danger">Deletar</a>
+                {% endif %}
             </div>
         </div>
         {% block content %}
@@ -51,7 +54,7 @@
             Ver Avaliações
         </button>
         <a href="reviews/criar" class="create__review__button">Criar Review</a>
-    
+
         {# --- ESTRUTURA DA MODAL COM CORPO VAZIO --- #}
         <div id="reviews__modal" class="modal">
             <div class="modal__content">

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register-styles.css' %}">
+    <title>Cadastro | Reborn Games</title>
+</head>
+
+<body>
+    <main class="register__main">
+        <div class="register__container">
+            <h1 class="register__title">Criar Conta</h1>
+
+            <form method="POST" action="{% url 'register' %}" class="register__form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="form__error">
+                    {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="form__group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="field__error">
+                        {% for error in field.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="form__btn">Cadastrar</button>
+                <p class="form__login-link">
+                    Já tem uma conta? <a href="{% url 'login' %}">Entrar</a>
+                </p>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
