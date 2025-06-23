@@ -46,7 +46,25 @@
                 <a href="{% url 'delete-game' game.id %}" class="product__btn product__btn--danger">Deletar</a>
             </div>
         </div>
+        {% block content %}
+        <button id="open__reviews__modal__btn" data-url="{% url 'review:list' game_pk=game.pk %}">
+            Ver Avaliações
+        </button>
+    
+        {# --- ESTRUTURA DA MODAL COM CORPO VAZIO --- #}
+        <div id="reviews__modal" class="modal">
+            <div class="modal__content">
+                <span class="modal__close__btn">&times;</span>
+                <h2>Avaliações para {{ game.name }}</h2>
+                <hr>
+                <div id="modal__body">
+                    <p>Carregando avaliações...</p>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
     </main>
+
 
     {% include 'partials/_footer.html' %}
 </body>

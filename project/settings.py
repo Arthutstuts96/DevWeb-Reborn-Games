@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'game.apps.GameConfig',
+    'review.apps.ReviewConfig',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +62,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reborngames',
         'USER': 'postgres',
-        'PASSWORD': '1', # Depois mudar para postgres
+        'PASSWORD': 'postgres', # Depois mudar para postgres
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

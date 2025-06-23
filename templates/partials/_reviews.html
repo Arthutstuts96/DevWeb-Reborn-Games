@@ -1,0 +1,20 @@
+<div class="modal" id="reviewModal">
+    <div class="modal__content">
+        <span class="modal__close__btn" onclick="closeModal()">&times;</span>
+        <h2 class="modal__title">Avaliações do Jogo</h2>
+        <div class="review__list">
+            {% for review in reviews %}
+            <article class="review__item">
+                <header class="review__header">
+                    <strong class="review__author">{{ review.reviewer }}</strong>
+                    <span class="review__stars">Nota: {{ review.stars }}/5</span>
+                </header>
+                <blockquote class="review__content">{{ review.content|linebreaksbr }}</blockquote>
+                <small class="review__date">Em {{ review.create_date|date:"d/m/Y" }}</small>
+            </article>
+            {% empty %}
+            <p class="review__empty">Este jogo ainda não tem avaliações.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

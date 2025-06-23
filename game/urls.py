@@ -1,5 +1,6 @@
 from django.urls import path
 from game.views import *
+from review.views import ReviewListView
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
