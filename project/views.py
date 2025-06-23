@@ -28,6 +28,6 @@ class Login(View):
             return render(request, 'login.html', {'mensagem': 'Usuário ou senha inválidos'})
         
 class Logout(View):
-    def get(self, request):
+    def post(self, request):
         logout(request)
         return redirect(settings.LOGIN_URL)
