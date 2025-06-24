@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-82jvcfhde9&7i7)_tq8a-q4^of#0rkxru!-csm!2^#)a@7e*6(
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,6 +23,9 @@ INSTALLED_APPS = [
     'game.apps.GameConfig',
     'review.apps.ReviewConfig',
     'user.apps.UserConfig',
+    'corsheaders', 
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -33,7 +36,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:8100",] # URL do ionic com angular
 
 ROOT_URLCONF = 'project.urls'
 
@@ -69,6 +75,14 @@ DATABASES = {
     }
 }
 
+# CRIANDO API
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

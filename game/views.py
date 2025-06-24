@@ -5,8 +5,13 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from rest_framework.generics import ListAPIView
+from rest_framework import permissions
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from game.forms import FormGame
 from game.models import Game
+from game.serializers import GameSerializer
 
 class Home(LoginRequiredMixin, ListView):
     model = Game
@@ -41,7 +46,7 @@ class GameDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'game'
 
 
-class GameImageGetter(LoginRequiredMixin, View):
+class GameImageGetter(View):
     def get(self, request, filename):
         try:
             game = Game.objects.get(image='game/images/{}'.format(filename))
@@ -50,3 +55,12 @@ class GameImageGetter(LoginRequiredMixin, View):
             raise Http404('Foto não encontrada ou não autorizado')
         except Exception as e:
             raise e
+
+# API que retorna todos os games
+class GetAllGamesApi(ListAPIView):
+    serializer_class = GameSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Game.objects.all()

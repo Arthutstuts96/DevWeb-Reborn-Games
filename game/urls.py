@@ -9,4 +9,6 @@ urlpatterns = [
     path('deletar/<int:pk>/', DeleteGame.as_view(), name="delete-game"),
     path('<int:pk>/', GameDetailView.as_view(), name='game-detail'),
     path('images/<str:filename>/', GameImageGetter.as_view(), name="game-image"),
+
+     path('api/', GetAllGamesApi.as_view(), name='get-games-api'),
 ]
