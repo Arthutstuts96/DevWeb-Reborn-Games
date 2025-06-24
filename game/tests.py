@@ -1,11 +1,11 @@
 from datetime import datetime
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from django.utils import timezone
 
 from game.forms import FormGame
-from game.models import Game, GAME_CATEGORIES 
+from game.models import Game, GAME_CATEGORIES
+from user.models import User 
 
 class TestHomeView(TestCase):
     def setUp(self):
@@ -17,7 +17,7 @@ class TestHomeView(TestCase):
             create_date=timezone.now(),
             category=GAME_CATEGORIES[0][0],
             isUsed=True,
-            owner='Test User',
+            owner=self.user,
             price=250.00,
             description='A classic NES adventure.'
         )
@@ -54,7 +54,7 @@ class TestCreateGameView(TestCase):
             'year': 1985,
             'category': GAME_CATEGORIES[1][0],
             'create_date': datetime.now(),
-            'owner': 'John Doe',
+            'owner': self.user,
             'isUsed': False,
             'price': 150.50,
             'description': 'The original platformer.'
@@ -79,7 +79,7 @@ class TestEditGameView(TestCase):
             create_date=timezone.now(),
             category=GAME_CATEGORIES[0][0],
             isUsed=True,
-            owner='Test User',
+            owner=self.user,
             price=199.00,
             description='A fast-paced platformer.'
         )
@@ -100,7 +100,7 @@ class TestEditGameView(TestCase):
             'year': 1991,
             'category': self.game.category,
             'create_date': datetime.now(),
-            'owner': 'John Doe',
+            'owner': self.user,
             'isUsed': self.game.isUsed,
             'price': 210.00, 
             'description': self.game.description,
@@ -125,7 +125,7 @@ class TestDeleteGameView(TestCase):
             create_date=timezone.now(),
             category=GAME_CATEGORIES[0][0],
             isUsed=True,
-            owner='Test User',
+            owner=self.user,
             price=99.00,
             description='Arcade classic.'
         )
@@ -159,7 +159,7 @@ class TestGameDetailView(TestCase):
             create_date=timezone.now(),
             category=GAME_CATEGORIES[2][0], 
             isUsed=True,
-            owner='Test User',
+            owner=self.user,
             price=350.00,
             description='A time-traveling RPG.'
         )
