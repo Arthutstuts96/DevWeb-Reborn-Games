@@ -8,6 +8,13 @@
         </div>
         <img src="{% static 'images/user-icon.png' %}" alt="Perfil" class="navbar__profile-icon"
             onclick="toggleMenu()" />
+        <span>
+            {% if request.user.is_authenticated %}
+            {{ request.user.username }}
+            {% else %}
+            Entrar
+            {% endif %}
+        </span>
         <div class="navbar__dropdown" id="profileMenu">
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
